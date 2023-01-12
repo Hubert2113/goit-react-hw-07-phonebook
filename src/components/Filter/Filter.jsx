@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { filterUpdate } from '../../redux/actions';
+ import { updateFilter } from '../../redux/slices';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector((state) => state.filter);
+  const filter = useSelector((state) => state.textUtilities.filter);
+  
   return (
     <label>
       Find contacts by name
@@ -11,7 +12,7 @@ const Filter = () => {
         type="text"
         name="name"
         value={filter}
-        onChange={(ev) => dispatch(filterUpdate(ev.target.value))}
+        onChange={(ev) => dispatch(updateFilter(ev.target.value))}
       />
     </label>
   );

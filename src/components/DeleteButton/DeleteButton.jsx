@@ -1,11 +1,22 @@
 import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/actions';
 import styles from './DeleteButton.module.scss';
+import { deleteContact } from '../../redux/operations';
 
-const DeleteButton = ({ id }) => {
+const DeleteButton = ({ contactId }) => {
   const dispatch = useDispatch();
 
-  return <button className={styles.button} onClick={() => dispatch(deleteContact(id))}>Delete</button>;
+  const deleteContactDOM = () => {
+    dispatch(deleteContact(contactId));
+  }
+
+  return (
+    <button
+      className={styles.button}
+      onClick={deleteContactDOM}
+    >
+      Delete
+    </button>
+  );
 };
 
 export default DeleteButton;

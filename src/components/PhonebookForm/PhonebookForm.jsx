@@ -1,13 +1,14 @@
 import styles from './PhonebookForm.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
-import * as actions from '../../redux/actions';
+import { updateName, updateNumber } from '../../redux/slices';
+import { addContact } from '../../redux/operations';
 
 const PhonebookForm = () => {
   const dispatch = useDispatch();
-  const name = useSelector((state) => state.currentName);
-  const number = useSelector((state) => state.currentNumber);
-  const contacts = useSelector((state) => state.contacts);
+  const name = useSelector((state) => state.textUtilities.name);
+  const number = useSelector((state) => state.textUtilities.number);
+  const contacts = useSelector((state) => state.contacts.items);
 
   return (
     <section>
@@ -17,7 +18,7 @@ const PhonebookForm = () => {
           <label className={styles.phonebookLabel}>
             Name
             <input
-              onChange={(ev) => dispatch(actions.nameUpdate(ev.target.value))}
+              onChange={(ev) => dispatch(updateName(ev.target.value))}
               value={name}
               className={styles.phonebookInput}
               type="text"
@@ -31,7 +32,7 @@ const PhonebookForm = () => {
             Number
             <input
               className={styles.phonebookInput}
-              onChange={(ev) => dispatch(actions.numberUpdate(ev.target.value))}
+              onChange={(ev) => dispatch(updateNumber(ev.target.value))}
               value={number}
               id="number"
               type="tel"
@@ -48,14 +49,14 @@ const PhonebookForm = () => {
               ev.preventDefault();
               if (!contacts.map((contact) => contact.name).includes(name)) {
                 dispatch(
-                  actions.addContact({
+                  addContact({
                     id: nanoid(),
                     name: name,
                     number: number,
                   })
                 );
-              }else{
-                alert(`${name} is already in contacts.`)
+              } else {
+                alert(`${name} is already in contacts.`);
               }
             }}
           >

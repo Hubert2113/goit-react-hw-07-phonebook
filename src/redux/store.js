@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { currentName, currentNumber, contacts, filter } from './reducers';
+import { textReducer, contactsReducer } from './slices';
 
 const store = configureStore({
   reducer: {
-    currentName,
-    currentNumber,
-    contacts,
-    filter,
+    textUtilities: textReducer,
+    contacts: contactsReducer,
   },
 });
 
