@@ -4,6 +4,7 @@ import DeleteButton from '../DeleteButton/DeleteButton';
 import styles from './ContactList.module.scss';
 import Filter from '../Filter/Filter';
 
+
 const ContactList = () => {
   const { items, isLoading } = useSelector((state) => state.contacts);
   const filter = useSelector((state) => state.textUtilities.filter);
