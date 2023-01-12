@@ -5,7 +5,7 @@ import styles from './ContactList.module.scss';
 import Filter from '../Filter/Filter';
 
 const ContactList = () => {
-  const { items, isLoading, error } = useSelector((state) => state.contacts);
+  const { items, isLoading } = useSelector((state) => state.contacts);
   const filter = useSelector((state) => state.textUtilities.filter);
 
   return (
